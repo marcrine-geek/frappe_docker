@@ -9,10 +9,9 @@ import sys
 from typing import Literal
 
 Repo = Literal["frontend"]
-MajorVersion = Literal["14"]
 
 
-def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
+def get_latest_tag(repo: Repo) -> str:
     
     regex = rf"v{version}.*"
     refs = subprocess.check_output(
@@ -55,18 +54,14 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
 def main(_args: list[str]) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", choices=["frontend"], required=True)
-    parser.add_argument(
-        "--version", choices=["14"], required=True
-    )
+    
     args = parser.parse_args(_args)
 
-    frappe_tag = get_latest_tag("frontend", args.version)
     
 
     file_name = os.getenv("GITHUB_ENV")
     if file_name:
-        update_env(file_name, frappe_tag)
-    _print_resp(frappe_tag)
+        update_env(file_name)
     return 0
 
 
