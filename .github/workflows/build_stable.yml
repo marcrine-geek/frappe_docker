@@ -34,7 +34,7 @@ jobs:
     uses: ./.github/workflows/docker-build-push.yml
     with:
       repo: frontend
-      version: "14"
+      version: "master"
       push: ${{ github.repository == 'marcrine-geek/frappe_docker' && github.event_name != 'pull_request' }}
       python_version: 3.10.13
       node_version: 16.20.2
