@@ -8,13 +8,12 @@ import subprocess
 import sys
 from typing import Literal
 
-Repo = Literal["frappe", "erpnext"]
-MajorVersion = Literal["12", "13", "14", "15", "develop"]
+Repo = Literal["frontend"]
+MajorVersion = Literal["14"]
 
 
 def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
-    if version == "develop":
-        return "develop"
+    
     regex = rf"v{version}.*"
     refs = subprocess.check_output(
         (
@@ -25,7 +24,7 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
             "--refs",
             "--tags",
             "--sort=v:refname",
-            f"https://github.com/frappe/{repo}",
+            f"https://github.com/marcrine-geek/{repo}",
             str(regex),
         ),
         encoding="UTF-8",
@@ -40,37 +39,34 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
     return matches[0]
 
 
-def update_env(file_name: str, frappe_tag: str, erpnext_tag: str | None = None):
-    text = f"\nFRAPPE_VERSION={frappe_tag}"
-    if erpnext_tag:
-        text += f"\nERPNEXT_VERSION={erpnext_tag}"
+# def update_env(file_name: str, frappe_tag: str, erpnext_tag: str | None = None):
+#     text = f"\nFRAPPE_VERSION={frappe_tag}"
+#     if erpnext_tag:
+#         text += f"\nERPNEXT_VERSION={erpnext_tag}"
 
-    with open(file_name, "a") as f:
-        f.write(text)
+#     with open(file_name, "a") as f:
+#         f.write(text)
 
 
-def _print_resp(frappe_tag: str, erpnext_tag: str | None = None):
-    print(json.dumps({"frappe": frappe_tag, "erpnext": erpnext_tag}))
+# def _print_resp(frappe_tag: str, erpnext_tag: str | None = None):
+#     print(json.dumps({"frappe": frappe_tag, "erpnext": erpnext_tag}))
 
 
 def main(_args: list[str]) -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--repo", choices=["frappe", "erpnext"], required=True)
+    parser.add_argument("--repo", choices=["frontend"], required=True)
     parser.add_argument(
-        "--version", choices=["12", "13", "14", "15", "develop"], required=True
+        "--version", choices=["14"], required=True
     )
     args = parser.parse_args(_args)
 
-    frappe_tag = get_latest_tag("frappe", args.version)
-    if args.repo == "erpnext":
-        erpnext_tag = get_latest_tag("erpnext", args.version)
-    else:
-        erpnext_tag = None
+    frappe_tag = get_latest_tag("frontend", args.version)
+    
 
     file_name = os.getenv("GITHUB_ENV")
     if file_name:
-        update_env(file_name, frappe_tag, erpnext_tag)
-    _print_resp(frappe_tag, erpnext_tag)
+        update_env(file_name, frappe_tag)
+    _print_resp(frappe_tag)
     return 0
 
 
