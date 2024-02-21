@@ -48,7 +48,7 @@ jobs:
     name: Update example.env and pwd.yml
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'marcrine-geek/frappe_docker' && github.event_name != 'pull_request' }}
-    needs: v15
+    needs: v14
 
     steps:
       - name: Checkout
@@ -86,7 +86,7 @@ jobs:
     name: Release Helm
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'marcrine-geek/frappe_docker' && github.event_name != 'pull_request' }}
-    needs: v15
+    needs: v14
 
     steps:
       - name: Setup deploy key
