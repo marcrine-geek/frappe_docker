@@ -60,7 +60,7 @@ jobs:
           python-version: "3.10"
 
       - name: Get latest versions
-        run: python3 ./.github/scripts/get_latest_tags.py --repo erpnext --version 15
+        run: python3 ./.github/scripts/get_latest_tags.py --repo frontend --version 14
 
       - name: Update
         run: |
@@ -103,4 +103,4 @@ jobs:
         run: |
           git clone git@github.com:frappe/helm.git && cd helm
           pip install -r release_wizard/requirements.txt
-          ./release_wizard/wizard 15 patch --remote origin --ci
+          ./release_wizard/wizard 14 patch --remote origin --ci
