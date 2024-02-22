@@ -7,23 +7,34 @@ import re
 import subprocess
 import sys
 from typing import Literal
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+token = os.getenv("MY_TOKEN")
+print(token)
 
 Repo = Literal["frontend"]
 MajorVersion = Literal["master"]
-SECRET = os.environ['MY_TOKEN']
+
+username="marcrine-geek"
 
 def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
-    token=SECRET
+    
     regex = rf"{version}.*"
+    git_url = f"https://{username}:{token}@github.com/marcrine-geek/{repo}.git"
     refs = subprocess.check_output(
         (
             "git",
             "ls-remote",
-            f"https://github.com/marcrine-geek/{repo}",
+            git_url,
             # str(regex),
         ),
         encoding="UTF-8",
-        env={"GITHUB_TOKEN": token},  # Set your personal access token here
+        env={
+                "GITHUB_TOKEN": token,
+            },  # Set your personal access token here
     ).split()[1::2]
 
     if not refs:
@@ -36,7 +47,7 @@ def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
 
 # Example usage
 try:
-    latest_tag = get_latest_tag("frontend", "master", SECRET)
+    latest_tag = get_latest_tag("frontend", "master", token)
     print("Latest tag:", latest_tag)
 except Exception as e:
     print("Error:", e)
@@ -58,14 +69,14 @@ def _print_resp(frappe_tag: str, erpnext_tag: str | None = None):
 
 def main(_args: list[str]) -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--repo", choices=["frontend"], required=True)
-    parser.add_argument(
-        "--version", choices=["master"], required=True
-    )
+    # parser.add_argument("--repo", choices=["frontend"], required=True)
+    # parser.add_argument(
+    #     "--version", choices=["master"], required=True
+    # )
     args = parser.parse_args(_args)
-    token = SECRET
+    
 
-    frappe_tag = get_latest_tag("frontend", args.version, token)
+    frappe_tag = get_latest_tag("frontend", "master", token)
     
 
     file_name = os.getenv("GITHUB_ENV")
