@@ -12,9 +12,12 @@ Repo = Literal["frontend"]
 MajorVersion = Literal["master"]
 
 
-def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
-    
+def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
+    headers = {"Authorization": f"token {token}"}
     regex = rf"v{version}.*"
+    url = f"https://github.com/marcrine-geek/{repo}"
+    
+    # Use subprocess to call git command with authentication headers
     refs = subprocess.check_output(
         (
             "git",
@@ -24,10 +27,12 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
             "--refs",
             "--tags",
             "--sort=v:refname",
-            f"https://github.com/marcrine-geek/{repo}",
+            url,
             str(regex),
         ),
         encoding="UTF-8",
+        env={"GIT_TERMINAL_PROMPT": "0"},
+        headers=headers
     ).split()[1::2]
 
     if not refs:
@@ -37,6 +42,14 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
     if not matches:
         raise RuntimeError(f'Can\'t parse tag from ref "{ref}"')
     return matches[0]
+
+# Example usage
+try:
+    latest_tag = get_latest_tag("private-repo", "master", "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")
+    print("Latest tag:", latest_tag)
+except Exception as e:
+    print("Error:", e)
+
 
 
 # def update_env(file_name: str, frappe_tag: str, erpnext_tag: str | None = None):
