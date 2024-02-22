@@ -47,17 +47,17 @@ except Exception as e:
 
 
 
-# def update_env(file_name: str, frappe_tag: str, erpnext_tag: str | None = None):
-#     text = f"\nFRAPPE_VERSION={frappe_tag}"
-#     if erpnext_tag:
-#         text += f"\nERPNEXT_VERSION={erpnext_tag}"
+def update_env(file_name: str, frappe_tag: str, erpnext_tag: str | None = None):
+    text = f"\nFRAPPE_VERSION={frappe_tag}"
+    if erpnext_tag:
+        text += f"\nERPNEXT_VERSION={erpnext_tag}"
 
-#     with open(file_name, "a") as f:
-#         f.write(text)
+    with open(file_name, "a") as f:
+        f.write(text)
 
 
-# def _print_resp(frappe_tag: str, erpnext_tag: str | None = None):
-#     print(json.dumps({"frappe": frappe_tag, "erpnext": erpnext_tag}))
+def _print_resp(frappe_tag: str, erpnext_tag: str | None = None):
+    print(json.dumps({"frappe": frappe_tag, "erpnext": erpnext_tag}))
 
 
 def main(_args: list[str]) -> int:
