@@ -18,7 +18,6 @@ def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
         (
             "git",
             "-c",
-            "versionsort.suffix=-",
             "ls-remote",
             "--refs",
             "--tags",
