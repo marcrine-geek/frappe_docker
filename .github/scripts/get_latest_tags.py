@@ -13,6 +13,7 @@ MajorVersion = Literal["master"]
 
 
 def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
+    token="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"
     regex = rf"{version}.*"
     refs = subprocess.check_output(
         (
