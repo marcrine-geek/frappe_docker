@@ -20,7 +20,7 @@ def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
             "git",
             "ls-remote",
             f"https://github.com/marcrine-geek/{repo}",
-            str(regex),
+            # str(regex),
         ),
         encoding="UTF-8",
         env={"GITHUB_TOKEN": token},  # Set your personal access token here
