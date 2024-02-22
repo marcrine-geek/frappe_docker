@@ -60,11 +60,12 @@ jobs:
           python-version: "3.10"
 
       - name: Get latest versions
-        run: python3 ./.github/scripts/get_latest_tags.py --repo frontend --version 14
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+        run: python3 ./.github/scripts/get_latest_tags.py
 
       - name: Update
         run: |
-          pip install python-dotenv
           python3 ./.github/scripts/update_example_env.py
           python3 ./.github/scripts/update_pwd.py
 

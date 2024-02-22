@@ -8,11 +8,9 @@ import subprocess
 import sys
 from typing import Literal
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
 
-token = os.getenv("MY_TOKEN")
+token = os.getenv("GITHUB_TOKEN")
 print(token)
 
 Repo = Literal["frontend"]
