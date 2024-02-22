@@ -72,8 +72,9 @@ def main(_args: list[str]) -> int:
         "--version", choices=["master"], required=True
     )
     args = parser.parse_args(_args)
+    token = "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"
 
-    frappe_tag = get_latest_tag("frontend", args.version, args.token)
+    frappe_tag = get_latest_tag("frontend", args.version, token)
     
 
     file_name = os.getenv("GITHUB_ENV")
