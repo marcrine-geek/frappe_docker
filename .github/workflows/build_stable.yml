@@ -70,7 +70,7 @@ jobs:
           python3 ./.github/scripts/get_latest_tags.py --repo frontend --version master
         
         env:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TEST }}
 
       - name: Update
         run: |
