@@ -40,7 +40,7 @@ def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
 
 # Example usage
 try:
-    latest_tag = get_latest_tag("frontend", "master", "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")
+    latest_tag = get_latest_tag("frontend", "master", "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")
     print("Latest tag:", latest_tag)
 except Exception as e:
     print("Error:", e)
@@ -67,7 +67,7 @@ def main(_args: list[str]) -> int:
         "--version", choices=["master"], required=True
     )
     args = parser.parse_args(_args)
-    token = "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"
+    token = "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"
 
     frappe_tag = get_latest_tag("frontend", args.version, token)
     
