@@ -13,11 +13,7 @@ MajorVersion = Literal["master"]
 
 
 def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
-    headers = {"Authorization": f"token {token}"}
     regex = rf"v{version}.*"
-    url = f"https://github.com/marcrine-geek/{repo}"
-    
-    # Use subprocess to call git command with authentication headers
     refs = subprocess.check_output(
         (
             "git",
@@ -27,12 +23,11 @@ def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
             "--refs",
             "--tags",
             "--sort=v:refname",
-            url,
+            f"https://github.com/{repo}",
             str(regex),
         ),
         encoding="UTF-8",
-        env={"GIT_TERMINAL_PROMPT": "0"},
-        headers=headers
+        env={"GITHUB_TOKEN": token},  # Set your personal access token here
     ).split()[1::2]
 
     if not refs:
