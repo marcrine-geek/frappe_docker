@@ -73,7 +73,7 @@ def main(_args: list[str]) -> int:
     )
     args = parser.parse_args(_args)
 
-    frappe_tag = get_latest_tag("frontend", args.version)
+    frappe_tag = get_latest_tag("frontend", args.version, args.token)
     
 
     file_name = os.getenv("GITHUB_ENV")
