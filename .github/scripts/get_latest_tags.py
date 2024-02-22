@@ -67,14 +67,14 @@ def _print_resp(frappe_tag: str, erpnext_tag: str | None = None):
 
 def main(_args: list[str]) -> int:
     parser = argparse.ArgumentParser()
-    # parser.add_argument("--repo", choices=["frontend"], required=True)
-    # parser.add_argument(
-    #     "--version", choices=["master"], required=True
-    # )
+    parser.add_argument("--repo", choices=["frontend"], required=True)
+    parser.add_argument(
+        "--version", choices=["master"], required=True
+    )
     args = parser.parse_args(_args)
     
 
-    frappe_tag = get_latest_tag("frontend", "master", token)
+    frappe_tag = get_latest_tag("frontend", args.version, token)
     
 
     file_name = os.getenv("GITHUB_ENV")
