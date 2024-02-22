@@ -64,6 +64,7 @@ jobs:
 
       - name: Update
         run: |
+          pip install python-dotenv
           python3 ./.github/scripts/update_example_env.py
           python3 ./.github/scripts/update_pwd.py
 
