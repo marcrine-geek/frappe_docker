@@ -11,17 +11,16 @@ import os
 
 
 token = os.getenv("GITHUB_TOKEN")
-
+print(token)
 Repo = Literal["frontend"]
 MajorVersion = Literal["master"]
 
 username="marcrine-geek"
 
 def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
-    print("9999999")
     regex = rf"{version}.*"
     git_url = f"https://{username}:{token}@github.com/marcrine-geek/{repo}.git"
-    
+
     print(git_url)
     refs = subprocess.check_output(
         (
