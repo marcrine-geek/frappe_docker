@@ -67,7 +67,7 @@ jobs:
 
       - name: Get latest versions
         run: |
-          echo "My GitHub Token: ${{ secrets.MY_TOKEN }}"
+          echo "My GitHub Token:"
 
       - name: Update
         run: |
