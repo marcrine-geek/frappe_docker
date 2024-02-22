@@ -61,8 +61,8 @@ jobs:
 
       - name: Debug
         run: |
-          echo "GitHub Token: ${{ secrets.GITHUB_TOKEN }}"
-          
+          echo "GitHub Token: ${{ secrets.MY_TOKEN }}"
+
       - name: Get latest versions
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
