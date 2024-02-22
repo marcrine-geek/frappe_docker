@@ -40,7 +40,7 @@ def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
 
 # Example usage
 try:
-    latest_tag = get_latest_tag("private-repo", "master", "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")
+    latest_tag = get_latest_tag("frontend", "master", "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")
     print("Latest tag:", latest_tag)
 except Exception as e:
     print("Error:", e)
