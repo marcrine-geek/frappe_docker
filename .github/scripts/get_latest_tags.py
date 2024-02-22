@@ -74,9 +74,9 @@ def main(_args: list[str]) -> int:
     args = parser.parse_args(_args)
     
 
-    frappe_tag = get_latest_tag("frontend", args.version, token)
+    frappe_tag = get_latest_tag(args.repo, args.version, token)
     
-
+    print(frappe_tag)
     file_name = os.getenv("GITHUB_ENV")
     if file_name:
         update_env(file_name, frappe_tag)
