@@ -59,14 +59,12 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Debug
-        run: |
-          echo "GitHub Token: ${{ secrets.MY_TOKEN }}"
-
       - name: Get latest versions
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
-        run: python3 ./.github/scripts/get_latest_tags.py --repo frontend --version master
+        run: |
+          echo "GitHub Token: ${{ secrets.MY_TOKEN }}"
+          python3 ./.github/scripts/get_latest_tags.py --repo frontend --version master
 
       - name: Update
         run: |
