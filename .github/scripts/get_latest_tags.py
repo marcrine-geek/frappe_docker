@@ -23,7 +23,7 @@ def get_latest_tag(repo: Repo, version: MajorVersion, token: str) -> str:
             "--refs",
             "--tags",
             "--sort=v:refname",
-            f"https://github.com/{repo}",
+            f"https://github.com/marcrine-geek/{repo}",
             str(regex),
         ),
         encoding="UTF-8",
