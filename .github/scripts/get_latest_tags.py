@@ -10,8 +10,8 @@ from typing import Literal
 import os
 
 
-token = os.environ['MY_SECRET']
-print(token)
+TEST = os.environ['TEST']
+print(TEST)
 Repo = Literal["frontend"]
 MajorVersion = Literal["master"]
 
