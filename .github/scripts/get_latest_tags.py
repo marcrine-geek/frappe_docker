@@ -31,13 +31,13 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
     print("Git ls-remote output:", output)
 
 
-    if not refs:
-        raise RuntimeError(f'No tags found for version "{regex}"')
-    ref = refs[-1]
-    matches: list[str] = re.findall(regex, ref)
-    if not matches:
-        raise RuntimeError(f'Can\'t parse tag from ref "{ref}"')
-    return matches[0]
+    # if not refs:
+    #     raise RuntimeError(f'No tags found for version "{regex}"')
+    # ref = refs[-1]
+    # matches: list[str] = re.findall(regex, ref)
+    # if not matches:
+    #     raise RuntimeError(f'Can\'t parse tag from ref "{ref}"')
+    # return matches[0]
 
 def update_env(file_name: str, frappe_tag: str, erpnext_tag: str | None = None):
     text = f"\nFRAPPE_VERSION={frappe_tag}"
