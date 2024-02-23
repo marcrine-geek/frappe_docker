@@ -27,6 +27,11 @@ on:
         required: true
     #   DOCKERHUB_TOKEN:
     #     required: true
+permissions:
+  contents: read
+
+env:
+  TEST: ${{ secrets.TEST}}
 
 jobs:
   build:
