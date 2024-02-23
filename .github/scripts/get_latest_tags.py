@@ -10,7 +10,7 @@ from typing import Literal
 import os
 
 
-token = os.getenv("GITHUB_TOKEN")
+token = os.environ("TEST")
 print(token)
 Repo = Literal["frontend"]
 MajorVersion = Literal["master"]
