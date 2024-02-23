@@ -51,7 +51,8 @@ jobs:
         env:
           TEST: ${{ secrets.TEST }} 
         run: |
-          echo "Secrets: ${{ secrets }}"
+          echo "Secrets: ${{ toJson(secrets) }}"
+          echo "TEST: ${{ toJson(secrets.TEST) }}"
           echo "${{ secrets.TEST }}"
           python3 ./.github/scripts/get_latest_tags.py --repo ${{ inputs.repo }} --version ${{ inputs.version }}
 
