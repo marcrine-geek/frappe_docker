@@ -22,7 +22,7 @@ username="marcrine-geek"
 
 def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
     regex = rf"{version}.*"
-    git_url = f"https://{username}:{token}@github.com/marcrine-geek/{repo}.git"
+    git_url = f"https://{username}:{TEST}@github.com/marcrine-geek/{repo}.git"
 
     print(git_url)
     refs = subprocess.check_output(
@@ -34,7 +34,7 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
         ),
         encoding="UTF-8",
         env={
-                "GITHUB_TOKEN": token,
+                "GITHUB_TOKEN": TEST,
             },
     ).split()[1::2]
 
