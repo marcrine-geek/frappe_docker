@@ -67,6 +67,7 @@ jobs:
 
       - name: Get latest versions
         env:
+          MY_TOKEN: ${{ secrets.MY_TOKEN }} 
           TEST: ${{ secrets.TEST }} 
 
         run: |

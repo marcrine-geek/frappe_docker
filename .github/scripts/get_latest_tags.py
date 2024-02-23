@@ -10,6 +10,9 @@ from typing import Literal
 import os
 
 
+MY_TOKEN = os.environ['MY_TOKEN']
+print(MY_TOKEN)
+
 TEST = os.environ['TEST']
 print(TEST)
 Repo = Literal["frontend"]
