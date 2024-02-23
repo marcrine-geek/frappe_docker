@@ -27,7 +27,7 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
 
     print(git_url)
 
-    output = subprocess.check_output(['git', 'ls-remote', repo_url]).decode().strip()
+    output = subprocess.check_output(['git', 'ls-remote', git_url]).decode().strip()
     print("Git ls-remote output:", output)
 
 
