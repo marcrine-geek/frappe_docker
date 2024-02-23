@@ -22,9 +22,9 @@ on:
         required: true
         type: string
         description: NodeJS Version
-    # secrets:
-    #   DOCKERHUB_USERNAME:
-    #     required: true
+    secrets:
+      TEST:
+        required: true
     #   DOCKERHUB_TOKEN:
     #     required: true
 
