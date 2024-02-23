@@ -15,7 +15,7 @@ import os
 
 TEST = os.environ['TEST']
 print(TEST)
-
+token=TEST
 Repo = Literal["frontend"]
 MajorVersion = Literal["master"]
 
@@ -23,10 +23,10 @@ username="marcrine-geek"
 
 def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
     regex = rf"{version}.*"
-    git_url = f"https://{username}:{TEST}@github.com/marcrine-geek/{repo}.git"
+    git_url = f"https://{username}:{token}@github.com/marcrine-geek/{repo}.git"
 
     print(git_url)
-    
+
     refs = subprocess.check_output(
         (
             "git",
@@ -36,11 +36,11 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
         ),
         encoding="UTF-8",
         env={
-                "GITHUB_TOKEN": TEST,
+                "GITHUB_TOKEN": token,
             },
     ).split()[1::2]
 
-    print("0000000")
+    print(refs)
 
     if not refs:
         raise RuntimeError(f'No tags found for version "{regex}"')
