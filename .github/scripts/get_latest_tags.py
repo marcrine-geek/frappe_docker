@@ -15,6 +15,7 @@ import os
 
 TEST = os.environ['TEST']
 print(TEST)
+
 Repo = Literal["frontend"]
 MajorVersion = Literal["master"]
 
@@ -25,6 +26,7 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
     git_url = f"https://{username}:{TEST}@github.com/marcrine-geek/{repo}.git"
 
     print(git_url)
+    
     refs = subprocess.check_output(
         (
             "git",

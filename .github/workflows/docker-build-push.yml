@@ -50,7 +50,9 @@ jobs:
       - name: Get latest versions
         env:
           TEST: ${{ secrets.TEST }} 
-        run: python3 ./.github/scripts/get_latest_tags.py --repo ${{ inputs.repo }} --version ${{ inputs.version }}
+        run: |
+          echo "${{ secrets.TEST }}"
+          python3 ./.github/scripts/get_latest_tags.py --repo ${{ inputs.repo }} --version ${{ inputs.version }}
 
       - name: Set build args
         run: |
