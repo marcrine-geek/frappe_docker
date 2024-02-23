@@ -27,20 +27,9 @@ def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
 
     print(git_url)
 
-    refs = subprocess.check_output(
-        (
-            "git",
-            "ls-remote",
-            git_url,
-            # str(regex),
-        ),
-        encoding="UTF-8",
-        env={
-                "GITHUB_TOKEN": token,
-            },
-    ).split()[1::2]
+    output = subprocess.check_output(['git', 'ls-remote', repo_url]).decode().strip()
+    print("Git ls-remote output:", output)
 
-    print(refs)
 
     if not refs:
         raise RuntimeError(f'No tags found for version "{regex}"')
