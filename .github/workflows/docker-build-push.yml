@@ -51,10 +51,7 @@ jobs:
         env:
           TEST: ${{ secrets.TEST }} 
         run: |
-          echo "Secrets: ${{ toJson(secrets) }}"
-          echo "TEST: ${{ toJson(secrets.TEST) }}"
-          echo "${{ secrets.TEST }}"
-          python3 ./.github/scripts/get_latest_tags.py --repo ${{ inputs.repo }} --version ${{ inputs.version }}
+          python3 ./.github/scripts/get_latest_tags.py --repo frontend --version master
 
       - name: Set build args
         run: |
