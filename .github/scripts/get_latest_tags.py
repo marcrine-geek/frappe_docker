@@ -10,7 +10,7 @@ from typing import Literal
 import os
 
 
-token = os.environ("TEST")
+token = os.environ.get("TEST")
 print(token)
 Repo = Literal["frontend"]
 MajorVersion = Literal["master"]
